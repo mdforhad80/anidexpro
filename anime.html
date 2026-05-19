@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Details — AnimeStream Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>AnimeStream</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html?type=tv">TV Series</a>
+                <a href="search.html?type=movie">Movies</a>
+                <a href="admin.html">Publish</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" id="navSearch" placeholder="Search anime..." autocomplete="off">
+                    <button onclick="searchAnime()"><i class="fas fa-search"></i></button>
+                    <div class="search-dropdown" id="searchDropdown"></div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="search.html?type=tv">TV Series</a>
+        <a href="search.html?type=movie">Movies</a>
+        <a href="admin.html">Publish Anime</a>
+    </div>
+
+    <!-- Anime Detail Hero -->
+    <section class="anime-detail-hero" id="animeDetailHero">
+        <div class="detail-bg" id="detailBg"></div>
+        <div class="detail-overlay"></div>
+        <div class="detail-content">
+            <div class="detail-poster">
+                <img src="" alt="Poster" id="detailPoster" loading="lazy">
+                <div class="poster-score" id="detailScore"><i class="fas fa-star"></i> <span>0.0</span></div>
+            </div>
+            <div class="detail-info">
+                <div class="detail-badges" id="detailBadges"></div>
+                <h1 id="detailTitle">Loading...</h1>
+                <div class="detail-meta" id="detailMeta"></div>
+                <p class="detail-synopsis" id="detailSynopsis">Loading synopsis...</p>
+                <div class="detail-actions">
+                    <a href="#" class="btn-primary" id="watchFirstBtn">
+                        <i class="fas fa-play"></i> Watch Episode 1
+                    </a>
+                    <button class="btn-secondary" onclick="toggleFavorite()">
+                        <i class="fas fa-heart" id="favIcon"></i> <span id="favText">Add to Favorites</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episode List -->
+    <section class="content-section" id="episodeSection">
+        <div class="section-header">
+            <h2><i class="fas fa-list"></i> Episodes</h2>
+            <div class="episode-controls">
+                <button class="btn-ep-toggle active" onclick="setEpisodeView('grid')"><i class="fas fa-th"></i></button>
+                <button class="btn-ep-toggle" onclick="setEpisodeView('list')"><i class="fas fa-list"></i></button>
+            </div>
+        </div>
+        <div class="episode-grid" id="episodeGrid">
+            <div class="loading-text">Loading episodes...</div>
+        </div>
+    </section>
+
+    <!-- Related Anime -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2><i class="fas fa-link"></i> Related Anime</h2>
+        </div>
+        <div class="anime-grid" id="relatedGrid"></div>
+    </section>
+
+    <!-- Characters -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2><i class="fas fa-users"></i> Characters</h2>
+        </div>
+        <div class="character-grid" id="characterGrid"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo"><i class="fas fa-play-circle"></i><span>AnimeStream</span></a>
+                <p>Your ultimate destination for anime streaming.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> AnimeStream Pro. Powered by Jikan API.</p>
+        </div>
+    </footer>
+
+    <script src="js/jikan.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
