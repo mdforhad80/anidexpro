@@ -1721,10 +1721,234 @@ body {
 
 .library-table .action-btns button.edit:hover {
     background: var(--accent-purple);
-    border-color: var(--accent-purple I'll build you a complete, modern anime streaming website with Jikan API integration. Let me create this step by step.
+    border-color: var(--accent-purple);
+    color: white;
+}
 
----
+.bulk-progress {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    display: none;
+}
 
-# 🎌 AnimeStream Pro — Complete Streaming Website
+.bulk-progress.active {
+    display: block;
+}
 
-## 📁 Project Structure
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-card);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-purple);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 60px 24px 0;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-brand .logo {
+    margin-bottom: 16px;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 300px;
+}
+
+.footer-links h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--accent-purple-light);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding: 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .search-box input {
+        width: 200px;
+    }
+    
+    .search-box input:focus {
+        width: 220px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .detail-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .detail-poster {
+        width: 200px;
+    }
+    
+    .watch-main {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .watch-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        max-height: 400px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-right {
+        display: none;
+    }
+    
+    .hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-desc {
+        font-size: 0.95rem;
+    }
+    
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+    }
+    
+    .detail-poster {
+        width: 160px;
+    }
+    
+    .detail-info h1 {
+        font-size: 1.8rem;
+    }
+    
+    .search-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+    }
+    
+    .filter-group select {
+        min-width: 120px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-brand p {
+        max-width: 100%;
+    }
+    
+    .admin-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .anime-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .content-section {
+        padding: 32px 16px;
+    }
+    
+    .server-bar {
+        padding: 8px 12px;
+    }
+    
+    .server-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
