@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — Publish Anime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>AnimeStream</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="admin.html" class="active">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="admin-section">
+        <div class="admin-header">
+            <h1><i class="fas fa-cog"></i> Admin Panel</h1>
+            <p>Publish and manage anime content</p>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="admin-tab active" onclick="switchTab('publish')">
+                <i class="fas fa-plus-circle"></i> Publish Anime
+            </button>
+            <button class="admin-tab" onclick="switchTab('manage')">
+                <i class="fas fa-database"></i> Manage Library
+            </button>
+            <button class="admin-tab" onclick="switchTab('bulk')">
+                <i class="fas fa-magic"></i> Bulk Import
+            </button>
+        </div>
+
+        <!-- Publish Tab -->
+        <div class="admin-panel active" id="publishPanel">
+            <div class="admin-card">
+                <h3><i class="fas fa-search"></i> Step 1: Search MAL Database</h3>
+                <div class="admin-search-box">
+                    <input type="text" id="malSearchInput" placeholder="Enter anime title to search MAL...">
+                    <button onclick="searchMAL()"><i class="fas fa-search"></i> Search</button>
+                </div>
+                <div class="mal-results" id="malResults"></div>
+            </div>
+
+            <div class="admin-card" id="publishFormCard" style="display:none;">
+                <h3><i class="fas fa-edit"></i> Step 2: Configure & Publish</h3>
+                <form id="publishForm" onsubmit="publishAnime(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>MAL ID</label>
+                            <input type="text" id="pubMalId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="pubTitle" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select id="pubType">
+                                <option value="tv">TV Series</option>
+                                <option value="movie">Movie</option>
+                                <option value="ova">OVA</option>
+                                <option value="ona">ONA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Episodes</label>
+                            <input type="number" id="pubEpisodes" min="1" value="12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Synopsis</label>
+                        <textarea id="pubSynopsis" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Poster URL</label>
+                        <input type="url" id="pubPoster">
+                    </div>
+                    
+                    <div class="embed-config">
+                        <h4><i class="fas fa-link"></i> Embed Configuration</h4>
+                        <p class="hint">Enter the base embed URL pattern. Use <code>{ep}</code> for episode number.</p>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Primary Server</label>
+                                <select id="pubServer">
+                                    <option value="vidrock">VidRock</option>
+                                    <option value="hianime">HiAnime</option>
+                                    <option value="gogo">Gogoanime</option>
+                                    <option value="9anime">9Anime</option>
+                                    <option value="animeheaven">AnimeHeaven</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Custom Embed URL (optional)</label>
+                                <input type="text" id="pubCustomEmbed" placeholder="https://example.com/embed?id={malId}&ep={ep}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary btn-large">
+                            <i class="fas fa-cloud-upload-alt"></i> Publish Anime
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="resetForm()">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Manage Tab -->
+        <div class="admin-panel" id="managePanel">
+            <div class="admin-card">
+                <h3><i class="fas fa-list"></i> Published Anime</h3>
+                <div class="library-table-wrapper">
+                    <table class="library-table" id="libraryTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Episodes</th>
+                                <th>Server</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="libraryBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Import Tab -->
+        <div class="admin-panel" id="bulkPanel">
+            <div class="admin-card">
+                <h3><i class="fas fa-file-import"></i> Bulk Import from MAL IDs</h3>
+                <p class="hint">Enter MAL IDs separated by commas or new lines (e.g., 1535, 16498, 30276)</p>
+                <textarea id="bulkIds" rows="6" placeholder="1535&#10;16498&#10;30276"></textarea>
+                <button class="btn-primary btn-large" onclick="bulkImport()">
+                    <i class="fas fa-magic"></i> Auto-Import All
+                </button>
+                <div class="bulk-progress" id="bulkProgress"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/jikan.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
