@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch — AnimeStream Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="watch-page">
+    <nav class="navbar navbar-compact">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>AnimeStream</span>
+            </a>
+            <div class="watch-nav-info" id="watchNavInfo">
+                <span class="watch-nav-title">Loading...</span>
+            </div>
+            <a href="#" class="btn-back" id="backToAnime">
+                <i class="fas fa-arrow-left"></i> Back to Anime
+            </a>
+        </div>
+    </nav>
+
+    <main class="watch-main">
+        <!-- Video Player -->
+        <div class="player-container">
+            <div class="video-wrapper" id="videoWrapper">
+                <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>
+                <div class="player-loading" id="playerLoading">
+                    <div class="spinner"></div>
+                    <p>Loading video...</p>
+                </div>
+                <div class="player-error" id="playerError" style="display:none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Video unavailable. Try another server.</p>
+                </div>
+            </div>
+            
+            <!-- Server Selection -->
+            <div class="server-bar">
+                <span class="server-label"><i class="fas fa-server"></i> Server:</span>
+                <div class="server-list" id="serverList">
+                    <button class="server-btn active" data-server="vidrock" onclick="switchServer('vidrock')">VidRock</button>
+                    <button class="server-btn" data-server="hianime" onclick="switchServer('hianime')">HiAnime</button>
+                    <button class="server-btn" data-server="gogo" onclick="switchServer('gogo')">Gogo</button>
+                    <button class="server-btn" data-server="9anime" onclick="switchServer('9anime')">9Anime</button>
+                    <button class="server-btn" data-server="animeheaven" onclick="switchServer('animeheaven')">AnimeHeaven</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Episode Info Sidebar -->
+        <aside class="watch-sidebar">
+            <div class="episode-info-card">
+                <h3 id="epTitle">Episode 1</h3>
+                <div class="ep-nav">
+                    <button class="ep-nav-btn" id="prevEpBtn" onclick="prevEpisode()">
+                        <i class="fas fa-chevron-left"></i> Prev
+                    </button>
+                    <span class="ep-counter" id="epCounter">1 / 12</span>
+                    <button class="ep-nav-btn" id="nextEpBtn" onclick="nextEpisode()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="episode-list-compact" id="episodeListCompact">
+                <h4>All Episodes</h4>
+                <div class="ep-list-scroll" id="epListScroll"></div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="js/jikan.js"></script>
+    <script src="js/watch.js"></script>
+</body>
+</html>
