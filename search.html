@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search — AnimeStream Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>AnimeStream</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html?type=tv">TV Series</a>
+                <a href="search.html?type=movie">Movies</a>
+                <a href="admin.html">Publish</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" id="navSearch" placeholder="Search anime..." autocomplete="off">
+                    <button onclick="searchAnime()"><i class="fas fa-search"></i></button>
+                    <div class="search-dropdown" id="searchDropdown"></div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="search.html?type=tv">TV Series</a>
+        <a href="search.html?type=movie">Movies</a>
+        <a href="admin.html">Publish Anime</a>
+    </div>
+
+    <section class="search-page-section">
+        <div class="search-hero">
+            <h1>Discover Anime</h1>
+            <div class="big-search">
+                <input type="text" id="bigSearch" placeholder="Search by title, genre, or keyword...">
+                <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="search-filters">
+            <div class="filter-group">
+                <label>Type</label>
+                <select id="filterType" onchange="applyFilters()">
+                    <option value="">All</option>
+                    <option value="tv">TV</option>
+                    <option value="movie">Movie</option>
+                    <option value="ova">OVA</option>
+                    <option value="ona">ONA</option>
+                    <option value="special">Special</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Status</label>
+                <select id="filterStatus" onchange="applyFilters()">
+                    <option value="">All</option>
+                    <option value="airing">Airing</option>
+                    <option value="complete">Completed</option>
+                    <option value="upcoming">Upcoming</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Genre</label>
+                <select id="filterGenre" onchange="applyFilters()">
+                    <option value="">All</option>
+                    <option value="1">Action</option>
+                    <option value="2">Adventure</option>
+                    <option value="4">Comedy</option>
+                    <option value="8">Drama</option>
+                    <option value="10">Fantasy</option>
+                    <option value="22">Romance</option>
+                    <option value="24">Sci-Fi</option>
+                    <option value="27">Shounen</option>
+                    <option value="37">Supernatural</option>
+                    <option value="30">Sports</option>
+                    <option value="7">Mystery</option>
+                    <option value="14">Horror</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Sort By</label>
+                <select id="filterSort" onchange="applyFilters()">
+                    <option value="popularity">Popularity</option>
+                    <option value="score">Rating</option>
+                    <option value="members">Members</option>
+                    <option value="start_date">Newest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="search-results-info">
+            <span id="resultsCount">Loading...</span>
+        </div>
+
+        <div class="anime-grid" id="searchResults">
+            <div class="loading-skeleton">
+                <div class="skeleton-card"></div><div class="skeleton-card"></div>
+                <div class="skeleton-card"></div><div class="skeleton-card"></div>
+                <div class="skeleton-card"></div><div class="skeleton-card"></div>
+            </div>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p> AnimeStream Pro. Powered by Jikan API.</p>
+        </div>
+    </footer>
+
+    <script src="js/jikan.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
